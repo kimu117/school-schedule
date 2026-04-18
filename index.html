@@ -3,20 +3,20 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
-<title>支援学級スケジュール Pro</title>
+<title>みんなの予定 Pro v6</title>
 <link href="https://fonts.googleapis.com/css2?family=Kosugi+Maru&family=Nunito:wght@900&display=swap" rel="stylesheet">
 <style>
-/* --- アプリ画面用の設定 --- */
 :root{
   --c4:#FF6B6B; --c5:#4ECDC4; --c6:#A78BFA; --bg:#F3F4F6; --card:#fff; --text:#1F2937; --muted:#9CA3AF; --border:#E5E7EB; --acc:#667eea; --r:16px; --sh:0 4px 15px rgba(0,0,0,.05);
 }
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
 body{font-family:'Kosugi Maru',sans-serif;background:var(--bg);color:var(--text);line-height:1.5;}
 
-/* アプリ画面の教科カラー */
+/* アプリ画面の教科カラー（ビビッド） */
 .s-算数{background:#CFFAFE;} .s-国語{background:#FEE2E2;} .s-理科{background:#ECFDF5;} .s-社会{background:#FFEDD5;}
-.s-体育{background:#DBEAFE;} .s-音楽{background:#EDE9FE;} .s-図工{background:#F5F0EB;} .s-英語{background:#D1FAE5;}
-.s-道徳{background:#F0FDF4;} .s-総合{background:#FDF4FF;} .s-生活{background:#FEF9C3;} .s-自立{background:#F3F4F6;}
+.s-体育{background:#DBEAFE;} .s-音楽{background:#EDE9FE;} .s-図工{background:#F5F0EB;} .s-家庭科{background:#FFD7D7;}
+.s-英語{background:#D1FAE5;} .s-道徳{background:#F0FDF4;} .s-きらり{background:#FDF4FF;} .s-生活{background:#FEF9C3;}
+.s-自立{background:#F3F4F6;} .s-行事{background:#FEF08A;}
 
 .hdr{background:linear-gradient(135deg,#667eea,#764ba2); color:#fff; padding:15px; position:sticky; top:0; z-index:100;}
 .hdr-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;}
@@ -32,6 +32,11 @@ body{font-family:'Kosugi Maru',sans-serif;background:var(--bg);color:var(--text)
 .wm.on{background:#fff; color:var(--acc); border-color:#fff;}
 
 .main{padding:15px; max-width:850px; margin:0 auto; padding-bottom:100px;}
+.sync-bar{display:flex; gap:10px; margin-bottom:15px;}
+.sync-btn{flex:1; padding:10px; border-radius:12px; border:none; font-weight:bold; cursor:pointer; font-family:inherit;}
+.load-btn{background:#fff; color:var(--acc); border:1px solid var(--acc);}
+.save-btn{background:var(--acc); color:#fff;}
+
 .week-nav{display:flex; align-items:center; gap:8px; margin-bottom:15px; background:#fff; padding:10px; border-radius:var(--r); box-shadow:var(--sh);}
 .wa{width:36px; height:36px; border-radius:50%; border:none; background:var(--bg); font-size:20px; cursor:pointer;}
 .wdays{display:flex; gap:4px; flex:1; overflow-x:auto;}
@@ -42,11 +47,11 @@ body{font-family:'Kosugi Maru',sans-serif;background:var(--bg);color:var(--text)
 .print-btn{width:100%; padding:14px; background:#22C55E; color:#fff; border:none; border-radius:12px; font-weight:bold; margin-bottom:15px; cursor:pointer; box-shadow:var(--sh); font-family:inherit;}
 
 .tt-card{background:var(--card); border-radius:var(--r); box-shadow:var(--sh); margin-bottom:20px; overflow:hidden;}
-.tt-row{display:flex; border-bottom:1px solid var(--border); min-height:75px;}
+.tt-row{display:flex; border-bottom:1px solid var(--border); min-height:85px;}
 .tt-p{width:55px; display:flex; flex-direction:column; align-items:center; justify-content:center; font-size:11px; color:var(--muted); background:var(--bg); font-weight:bold;}
 .tt-c{flex:1; padding:10px; display:flex; flex-direction:column; align-items:center; justify-content:center; cursor:pointer;}
 .tt-c strong{font-size:16px;}
-.tt-c span{font-size:11px; color:rgba(0,0,0,0.5); margin-top:4px;}
+.tt-memo{font-size:13px; color:#E11D48; font-weight:bold; margin-top:4px; background:#FFF1F2; padding:2px 8px; border-radius:4px;}
 
 .info-box{padding:15px; background:#FFFBEB; border-top:1px solid var(--border);}
 .info-val{width:100%; border:1px solid #FDE68A; border-radius:8px; padding:10px; font-size:14px; background:#fff; font-family:inherit; margin-top:5px;}
@@ -54,33 +59,26 @@ body{font-family:'Kosugi Maru',sans-serif;background:var(--bg);color:var(--text)
 .ov{position:fixed; inset:0; background:rgba(0,0,0,0.6); z-index:1000; display:none; align-items:center; justify-content:center; padding:20px;}
 .ov.on{display:flex;}
 .modal{background:#fff; border-radius:24px; width:100%; max-width:400px; padding:25px;}
-.input-memo{width:100%; padding:12px; border:1px solid var(--border); border-radius:12px; margin-bottom:15px; font-family:inherit;}
+.input-memo{width:100%; padding:12px; border:1px solid var(--border); border-radius:12px; margin-bottom:15px; font-family:inherit; font-size:16px;}
 .opt-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:10px;}
-.opt-btn{padding:12px; border-radius:12px; border:1px solid var(--border); font-weight:bold; cursor:pointer;}
+.opt-btn{padding:12px; border-radius:12px; border:1px solid var(--border); font-weight:bold; cursor:pointer; font-size:13px;}
 
-/* 🖨 印刷デザイン（パステル色を強制表示） */
+/* 🖨 印刷デザイン */
 @media print {
   @page { size: A4 landscape; margin: 8mm; }
   body { background: #fff !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-  .hdr, .week-nav, .print-btn, .set-btn, .wa, .ov, #content { display: none !important; }
+  .hdr, .week-nav, .print-btn, .set-btn, .wa, .ov, #content, .sync-bar { display: none !important; }
   #print-area { display: block !important; width: 100%; }
-  
   .p-title { text-align: center; font-size: 20px; font-weight: bold; margin-bottom: 10px; border-bottom: 2px solid #333; }
   .p-table { width: 100%; border-collapse: collapse; table-layout: fixed; }
-  .p-table th, .p-table td { border: 1px solid #999; padding: 6px 2px; text-align: center; overflow: hidden; }
-  .p-table th { background: #f0f0f0 !important; font-size: 11px; }
-
-  /* 印刷用のパステルカラー設定 */
+  .p-table th, .p-table td { border: 1px solid #999; padding: 6px 2px; text-align: center; }
   .ps-算数{background:#E0F7FA !important;} .ps-国語{background:#FFEBEE !important;}
   .ps-理科{background:#E8F5E9 !important;} .ps-社会{background:#FFF3E0 !important;}
   .ps-体育{background:#E3F2FD !important;} .ps-音楽{background:#F3E5F5 !important;}
-  .ps-図工{background:#EFEBE9 !important;} .ps-英語{background:#F1F8E9 !important;}
-  .ps-道徳{background:#F9FBE7 !important;} .ps-総合{background:#FCE4EC !important;}
-  .ps-生活{background:#FFFDE7 !important;} .ps-自立{background:#FAFAFA !important;}
-  
-  .p-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
-  .p-day-box { border: 1px solid #999; border-radius: 8px; padding: 5px; }
-  .p-day-title { font-weight: bold; font-size: 12px; background: #eee !important; text-align: center; border-radius: 4px; margin-bottom: 4px; }
+  .ps-図工{background:#EFEBE9 !important;} .ps-家庭科{background:#FCE4EC !important;}
+  .ps-英語{background:#F1F8E9 !important;} .ps-道徳{background:#F9FBE7 !important;}
+  .ps-きらり{background:#EDE9FE !important;} .ps-生活{background:#FFFDE7 !important;}
+  .ps-自立{background:#FAFAFA !important;} .ps-行事{background:#FEF9C3 !important;}
 }
 #print-area { display: none; }
 </style>
@@ -89,7 +87,7 @@ body{font-family:'Kosugi Maru',sans-serif;background:var(--bg);color:var(--text)
 
 <div class="hdr">
   <div class="hdr-top">
-    <div class="hdr-title">みんなの予定<span>支援学級スケジュール</span></div>
+    <div class="hdr-title">みんなの予定<span>支援学級スケジュール Pro</span></div>
     <button class="set-btn" onclick="openSet()">⚙</button>
   </div>
   <div class="who-box">
@@ -104,38 +102,43 @@ body{font-family:'Kosugi Maru',sans-serif;background:var(--bg);color:var(--text)
 </div>
 
 <div class="main">
+  <div class="sync-bar">
+    <button class="sync-btn load-btn" onclick="fetchCloud()">☁️ クラウドから読み込む</button>
+    <button class="sync-btn save-btn" onclick="saveToCloud()">📤 先生用:保存</button>
+  </div>
   <div class="week-nav">
     <button class="wa" onclick="shiftW(-1)">‹</button>
     <div class="wdays" id="wdays"></div>
     <button class="wa" onclick="shiftW(1)">›</button>
   </div>
-  <button class="print-btn" onclick="execPrint()">🖨 パステルカラーでA4印刷</button>
+  <button class="print-btn" onclick="execPrint()">🖨 パステルカラーで印刷する</button>
   <div id="content"></div>
   <div id="print-area"></div>
 </div>
 
 <div class="ov" id="subjOv" onclick="if(event.target===this)this.classList.remove('on')">
   <div class="modal">
-    <p style="font-size:12px; margin-bottom:8px; font-weight:bold;">この時間のメモ・持ち物</p>
-    <input type="text" id="subjMemo" class="input-memo" placeholder="例：習字セット、分度器">
+    <p style="font-size:12px; margin-bottom:8px; font-weight:bold;">この時間の持ち物</p>
+    <input type="text" id="subjMemo" class="input-memo" placeholder="例：エプロン、ふでばこ">
     <div class="opt-grid" id="subjOpts"></div>
     <button class="print-btn" style="margin-top:20px; background:#9CA3AF;" onclick="setSubj('')">クリア</button>
   </div>
 </div>
 
 <div class="ov" id="setOv" onclick="if(event.target===this)this.classList.remove('on')">
-  <div class="modal"><h3>連携設定</h3><input type="text" id="gasUrl" class="info-val"><button class="print-btn" style="margin-top:15px;" onclick="saveSettings()">保存</button></div>
+  <div class="modal"><h3>連携URL設定</h3><input type="text" id="gasUrl" class="info-val" placeholder="デプロイしたURLを貼る"><button class="print-btn" style="margin-top:15px;" onclick="saveSettings()">URLを保存</button></div>
 </div>
 
 <script>
-let db = JSON.parse(localStorage.getItem('edu_db_v5') || '{"tt":{},"info":{}}');
+let db = JSON.parse(localStorage.getItem('edu_db_v6') || '{"tt":{},"info":{}}');
 let whoG = 4, whoM = 1, isAll = false, wOff = 0, selDate = new Date();
 const DJ = ['日','月','火','水','木','金','土'], MB = {4:[1,2], 5:[3,4], 6:[5,6,7]};
-const subjects = ['国語','算数','理科','社会','体育','音楽','図工','英語','道徳','総合','生活','自立'];
+const subjects = ['国語','算数','理科','社会','体育','音楽','図工','家庭科','英語','道徳','きらり','生活','自立','行事'];
 
 function init(){
   const last = localStorage.getItem('last_user'); if(last) [whoG, whoM] = last.split('-').map(Number);
   renderWeek(); updateUI();
+  if(localStorage.getItem('gas_url')) fetchCloud();
 }
 function shiftW(v){ wOff += v; renderWeek(); }
 function renderWeek(){
@@ -175,7 +178,7 @@ function render(){
     h+=`</tr></thead><tbody>`;
     for(let p=1;p<=6;p++){
       h+=`<tr><td style="border:1px solid #eee; text-align:center; padding:8px;">${p}</td>`;
-      cols.forEach(c=>{ let d=db.tt[`${ds}-${c.g}-${c.n}-${p}`]||{s:''}; h+=`<td class="s-${d.s}" style="border:1px solid #eee; text-align:center; padding:8px;">${d.s}</td>`; });
+      cols.forEach(c=>{ let d=db.tt[`${ds}-${c.g}-${c.n}-${p}`]||{s:'',m:''}; h+=`<td class="s-${d.s}" style="border:1px solid #eee; text-align:center; padding:8px;">${d.s}${d.m?'🔑':''}</td>`; });
       h+=`</tr>`;
     }
     con.innerHTML=h+`</tbody></table></div>`;
@@ -183,37 +186,49 @@ function render(){
     let rows = '';
     for(let p=1; p<=6; p++){
       let d = db.tt[`${ds}-${whoG}-${whoM}-${p}`] || {s:'', m:''};
-      rows += `<div class="tt-row" onclick="openSubj(${p})"><div class="tt-p"><strong>${p}</strong>限</div><div class="tt-c ${d.s?'s-'+d.s:''}"><strong>${d.s||'タップ'}</strong>${d.m?`<span>メモ: ${d.m}</span>`:''}</div></div>`;
+      rows += `<div class="tt-row" onclick="openSubj(${p})"><div class="tt-p"><strong>${p}</strong>限</div><div class="tt-c ${d.s?'s-'+d.s:''}"><strong>${d.s||'タップ'}</strong>${d.m?`<div class="tt-memo">🔑${d.m}</div>`:''}</div></div>`;
     }
     let info = db.info[`${ds}-${whoG}-${whoM}`] || {out:'', bag:''};
-    con.innerHTML = `<div class="tt-card"><div class="tt-hdr" style="padding:10px; text-align:center; background:#eee; font-weight:bold;">${whoG}年 ${whoM}番</div>${rows}<div class="info-box"><span style="font-size:11px; font-weight:bold; color:#B45309;">🕒 下校時刻</span><input type="text" class="info-val" value="${info.out}" onchange="saveInfo('out',this.value)"><span style="font-size:11px; font-weight:bold; color:#B45309; display:block; margin-top:10px;">🎒 もちもの（全体）</span><input type="text" class="info-val" value="${info.bag}" onchange="saveInfo('bag',this.value)"></div></div>`;
+    con.innerHTML = `<div class="tt-card"><div class="tt-hdr" style="padding:10px; text-align:center; background:#eee; font-weight:bold;">${whoG}年 ${whoM}番</div>${rows}<div class="info-box"><span style="font-size:11px; font-weight:bold; color:#B45309;">🕒 下校時刻</span><input type="text" class="info-val" value="${info.out}" onchange="saveInfo('out',this.value)"><span style="font-size:11px; font-weight:bold; color:#B45309; display:block; margin-top:10px;">🎒 持ち物（全体）</span><input type="text" class="info-val" value="${info.bag}" onchange="saveInfo('bag',this.value)"></div></div>`;
   }
 }
 let curP = 0;
 function openSubj(p){ curP = p; const ds = selDate.toISOString().split('T')[0]; const d = db.tt[`${ds}-${whoG}-${whoM}-${curP}`] || {s:'', m:''}; document.getElementById('subjMemo').value = d.m; const grid = document.getElementById('subjOpts'); grid.innerHTML = ''; subjects.forEach(s => { const b = document.createElement('button'); b.className = 'opt-btn s-'+s; b.textContent = s; b.onclick = () => setSubj(s); grid.appendChild(b); }); document.getElementById('subjOv').classList.add('on'); }
 function setSubj(s){ const ds = selDate.toISOString().split('T')[0]; db.tt[`${ds}-${whoG}-${whoM}-${curP}`] = {s:s, m:document.getElementById('subjMemo').value}; saveDB(); document.getElementById('subjOv').classList.remove('on'); render(); }
 function saveInfo(k,v){ const ds = selDate.toISOString().split('T')[0]; if(!db.info[`${ds}-${whoG}-${whoM}`]) db.info[`${ds}-${whoG}-${whoM}`]={out:'', bag:''}; db.info[`${ds}-${whoG}-${whoM}`][k]=v; saveDB(); }
-function saveDB(){ localStorage.setItem('edu_db_v5', JSON.stringify(db)); syncWithGS(); }
+function saveDB(){ localStorage.setItem('edu_db_v6', JSON.stringify(db)); }
 function openSet(){ document.getElementById('gasUrl').value = localStorage.getItem('gas_url')||''; document.getElementById('setOv').classList.add('on'); }
-function saveSettings(){ localStorage.setItem('gas_url', document.getElementById('gasUrl').value); document.getElementById('setOv').classList.remove('on'); alert('保存完了'); }
-async function syncWithGS(){ const url = localStorage.getItem('gas_url'); if(!url)return; try{ await fetch(url,{method:'POST',mode:'no-cors',body:JSON.stringify(db)}); }catch(e){} }
+function saveSettings(){ localStorage.setItem('gas_url', document.getElementById('gasUrl').value); document.getElementById('setOv').classList.remove('on'); alert('設定完了'); fetchCloud(); }
+
+async function fetchCloud(){
+  const url = localStorage.getItem('gas_url'); if(!url)return;
+  try {
+    const res = await fetch(url);
+    const data = await res.json();
+    if(data) { db = data; render(); }
+  } catch(e) { console.error(e); }
+}
+async function saveToCloud(){
+  const url = localStorage.getItem('gas_url'); if(!url){ alert('設定ボタンからURLを入れてください'); return; }
+  try {
+    await fetch(url, {method:'POST', body:JSON.stringify(db)});
+    alert('クラウドに保存しました。子どもたちの画面に反映されます。');
+  } catch(e) { alert('保存失敗'); }
+}
 
 function execPrint(){
   const pa = document.getElementById('print-area'); pa.innerHTML = '';
   let b = new Date(selDate); let mon = new Date(b); mon.setDate(b.getDate() - (b.getDay()||7) + 1);
   let dates = []; for(let i=0; i<6; i++){ let d = new Date(mon); d.setDate(mon.getDate()+i); dates.push(d); }
-
   if(isAll){
-    let h = `<div class="p-title">週間スケジュール（全員一覧）</div><div class="p-grid">`;
+    let h = `<div class="p-title">週間スケジュール（全員一覧）</div><div style="display:grid; grid-template-columns: repeat(3, 1fr); gap: 10px;">`;
     dates.forEach(d => {
       let ds = d.toISOString().split('T')[0];
-      h += `<div class="p-day-box"><div class="p-day-title">${d.getMonth()+1}/${d.getDate()}(${DJ[d.getDay()]})</div><table class="p-day-table"><tr><th></th>`;
+      h += `<div style="border:1px solid #999; padding:5px;"><div style="background:#eee; text-align:center;">${d.getMonth()+1}/${d.getDate()}</div><table class="p-day-table" style="width:100%; border-collapse:collapse; font-size:9px;">`;
       let cols = []; [4,5,6].forEach(g => MB[g].forEach(n => cols.push({g,n})));
-      cols.forEach(c => h += `<th>${c.g}-${c.n}</th>`);
-      h += `</tr>`;
       for(let p=1; p<=6; p++){
         h += `<tr><td>${p}</td>`;
-        cols.forEach(c => { let d = db.tt[`${ds}-${c.g}-${c.n}-${p}`] || {s:''}; h += `<td class="ps-${d.s}">${d.s}</td>`; });
+        cols.forEach(c => { let d = db.tt[`${ds}-${c.g}-${c.n}-${p}`] || {s:'',m:''}; h += `<td class="ps-${d.s}" style="border:1px solid #ddd;">${d.s}${d.m?'*':''}</td>`; });
         h += `</tr>`;
       }
       h += `</table></div>`;
@@ -227,17 +242,14 @@ function execPrint(){
       h += `<tr><td><strong>${p}限</strong></td>`;
       dates.forEach(d => {
         let data = db.tt[`${d.toISOString().split('T')[0]}-${whoG}-${whoM}-${p}`] || {s:'', m:''};
-        h += `<td class="ps-${data.s}"><div style="font-weight:bold;">${data.s}</div><div style="font-size:9px; color:#666;">${data.m}</div></td>`;
+        h += `<td class="ps-${data.s}"><div style="font-weight:bold;">${data.s}</div><div style="font-size:9px; color:#C00; font-weight:bold;">${data.m}</div></td>`;
       });
       h += `</tr>`;
     }
     h += `<tr><td><strong>下校</strong></td>`;
     dates.forEach(d => { let inf = db.info[`${d.toISOString().split('T')[0]}-${whoG}-${whoM}`]; h += `<td>${inf?inf.out:''}</td>`; });
     h += `</tr><tr><td><strong>もちもの</strong></td>`;
-    dates.forEach(d => { 
-        let inf = db.info[`${d.toISOString().split('T')[0]}-${whoG}-${whoM}`]; 
-        h += `<td style="font-size:9px; vertical-align:top; text-align:left; height:60px; padding:4px;">${inf?inf.bag:''}</td>`; 
-    });
+    dates.forEach(d => { let inf = db.info[`${d.toISOString().split('T')[0]}-${whoG}-${whoM}`]; h += `<td style="font-size:9px; vertical-align:top; text-align:left; height:60px; padding:4px;">${inf?inf.bag:''}</td>`; });
     h += `</tr></table>`;
     pa.innerHTML = h;
   }
