@@ -3,13 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
-<title>みんなの予定 Pro v8</title>
+<title>みんなの予定 Pro v9</title>
 <link href="https://fonts.googleapis.com/css2?family=Kosugi+Maru&family=Nunito:wght@900&display=swap" rel="stylesheet">
 <style>
 :root{ --c4:#FF6B6B; --c5:#4ECDC4; --c6:#A78BFA; --bg:#F3F4F6; --card:#fff; --text:#1F2937; --muted:#9CA3AF; --border:#E5E7EB; --acc:#667eea; --r:16px; --sh:0 4px 15px rgba(0,0,0,.05); }
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
 body{font-family:'Kosugi Maru',sans-serif;background:var(--bg);color:var(--text);line-height:1.5;}
-.s-算数{background:#CFFAFE;} .s-国語{background:#FEE2E2;} .s-理科{background:#ECFDF5;} .s-社会{background:#FFEDD5;} .s-体育{background:#DBEAFE;} .s-音楽{background:#EDE9FE;} .s-図工{background:#F5F0EB;} .s-家庭科{background:#FFD7D7;} .s-英語{background:#D1FAE5;} .s-道徳{background:#F0FDF4;} .s-きらり{background:#FDF4FF;} .s-生活{background:#FEF9C3;} .s-自立{background:#F3F4F6;} .s-行事{background:#FEF08A;}
+.s-算数{background:#CFFAFE;} .s-国語{background:#FEE2E2;} .s-理科{background:#ECFDF5;} .s-社会{background:#FFEDD5;} .s-体育{background:#DBEAFE;} .s-音楽{background:#EDE9FE;} .s-図工{background:#F5F0EB;} .s-家庭科{background:#FFD7D7;} .s-英語{background:#D1FAE5;} .s-道徳{background:#F0FDF4;} .s-きらり{background:#FDF4FF;} .s-生活{background:#FEF9C3;} .s-自立{background:#F3F4F6;} .s-行事{background:#FEF08A;} .s-委員会{background:#FEF3C7;} .s-クラブ{background:#D1FAE5;}
 .hdr{background:linear-gradient(135deg,#667eea,#764ba2); color:#fff; padding:15px; position:sticky; top:0; z-index:100;}
 .hdr-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;}
 .hdr-title{font-family:'Nunito',sans-serif; font-weight:900; font-size:20px;}
@@ -29,9 +29,10 @@ body{font-family:'Kosugi Maru',sans-serif;background:var(--bg);color:var(--text)
 .week-nav{display:flex; align-items:center; gap:8px; margin-bottom:15px; background:#fff; padding:10px; border-radius:var(--r); box-shadow:var(--sh);}
 .wa{width:36px; height:36px; border-radius:50%; border:none; background:var(--bg); font-size:20px; cursor:pointer;}
 .wdays{display:flex; gap:4px; flex:1; overflow-x:auto;}
-.dbtn{flex-shrink:0; width:44px; text-align:center; padding:6px 0; border-radius:12px; border:none; background:transparent; cursor:pointer;}
+/* 修正: 日付ボタンを大きくしました */
+.dbtn{flex-shrink:0; width:60px; text-align:center; padding:8px 0; border-radius:12px; border:none; background:transparent; cursor:pointer;}
 .dbtn.sel .dn{background:var(--acc); color:#fff;}
-.dn{width:30px; height:30px; border-radius:50%; display:flex; align-items:center; justify-content:center; margin:4px auto 0; font-weight:bold; background:var(--bg);}
+.dn{width:40px; height:40px; font-size:18px; border-radius:50%; display:flex; align-items:center; justify-content:center; margin:4px auto 0; font-weight:bold; background:var(--bg);}
 .print-btn{width:100%; padding:14px; background:#22C55E; color:#fff; border:none; border-radius:12px; font-weight:bold; margin-bottom:15px; cursor:pointer; box-shadow:var(--sh); font-family:inherit;}
 .tt-card{background:var(--card); border-radius:var(--r); box-shadow:var(--sh); margin-bottom:20px; overflow:hidden;}
 .tt-row{display:flex; border-bottom:1px solid var(--border); min-height:85px;}
@@ -54,7 +55,7 @@ body{font-family:'Kosugi Maru',sans-serif;background:var(--bg);color:var(--text)
   #print-area { display: block !important; width: 100%; }
   .p-table { width: 100%; border-collapse: collapse; table-layout: fixed; }
   .p-table th, .p-table td { border: 1px solid #333; padding: 6px 2px; text-align: center; }
-  .ps-算数{background:#E0F7FA !important;} .ps-国語{background:#FFEBEE !important;} .ps-理科{background:#E8F5E9 !important;} .ps-社会{background:#FFF3E0 !important;} .ps-体育{background:#E3F2FD !important;} .ps-音楽{background:#F3E5F5 !important;} .ps-図工{background:#EFEBE9 !important;} .ps-家庭科{background:#FCE4EC !important;} .ps-英語{background:#F1F8E9 !important;} .ps-道徳{background:#F9FBE7 !important;} .ps-きらり{background:#EDE9FE !important;} .ps-生活{background:#FFFDE7 !important;} .ps-自立{background:#FAFAFA !important;} .ps-行事{background:#FEF9C3 !important;}
+  .ps-算数{background:#E0F7FA !important;} .ps-国語{background:#FFEBEE !important;} .ps-理科{background:#E8F5E9 !important;} .ps-社会{background:#FFF3E0 !important;} .ps-体育{background:#E3F2FD !important;} .ps-音楽{background:#F3E5F5 !important;} .ps-図工{background:#EFEBE9 !important;} .ps-家庭科{background:#FCE4EC !important;} .ps-英語{background:#F1F8E9 !important;} .ps-道徳{background:#F9FBE7 !important;} .ps-きらり{background:#EDE9FE !important;} .ps-生活{background:#FFFDE7 !important;} .ps-自立{background:#FAFAFA !important;} .ps-行事{background:#FEF9C3 !important;} .ps-委員会{background:#FFFDE7 !important;} .ps-クラブ{background:#E8F5E9 !important;}
 }
 #print-area { display: none; }
 </style>
@@ -86,10 +87,18 @@ body{font-family:'Kosugi Maru',sans-serif;background:var(--bg);color:var(--text)
   <div class="modal"><h3>連携設定</h3><input type="text" id="gasUrl" class="info-val" placeholder="URLを貼る"><button class="print-btn" style="margin-top:15px;" onclick="saveSettings()">URLを保存</button></div>
 </div>
 <script>
+// データのキーはそのままにしているので、今までのデータも消えません！
 let db = JSON.parse(localStorage.getItem('edu_db_v8') || '{"tt":{},"info":{}}');
 let whoG = 4, whoM = 1, isAll = false, wOff = 0, selDate = new Date();
 const DJ = ['日','月','火','水','木','金','土'], MB = {4:[1,2], 5:[3,4], 6:[5,6,7]};
-const subjects = ['国語','算数','理科','社会','体育','音楽','図工','家庭科','英語','道徳','きらり','生活','自立','行事'];
+// 教科に「委員会」「クラブ」を追加
+const subjects = ['国語','算数','理科','社会','体育','音楽','図工','家庭科','英語','道徳','きらり','生活','自立','行事','委員会','クラブ'];
+
+// 修正：日本時間（ローカルタイム）で確実に「YYYY-MM-DD」を取得する関数
+function toDS(d) {
+  return d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0');
+}
+
 function init(){
   const last = localStorage.getItem('last_user'); if(last) [whoG, whoM] = last.split('-').map(Number);
   renderWeek(); updateUI();
@@ -101,9 +110,12 @@ function renderWeek(){
   let b = new Date(); b.setDate(b.getDate() + wOff*7);
   let mon = new Date(b); mon.setDate(b.getDate() - (b.getDay()||7) + 1);
   for(let i=0; i<6; i++){
-    let d = new Date(mon); d.setDate(mon.getDate()+i); let ds = d.toISOString().split('T')[0];
-    let btn = document.createElement('button'); btn.className = 'dbtn' + (ds===selDate.toISOString().split('T')[0]?' sel':'');
-    btn.innerHTML = `<span style="font-size:10px; color:#999">${DJ[d.getDay()]}</span><span class="dn">${d.getDate()}</span>`;
+    let d = new Date(mon); d.setDate(mon.getDate()+i); 
+    let ds = toDS(d); // 修正箇所
+    let btn = document.createElement('button'); 
+    btn.className = 'dbtn' + (ds===toDS(selDate)?' sel':'');
+    // 修正：曜日を少し大きく（14px）しました
+    btn.innerHTML = `<span style="font-size:14px; color:#999">${DJ[d.getDay()]}</span><span class="dn">${d.getDate()}</span>`;
     btn.onclick = () => { selDate = d; renderWeek(); render(); }; con.appendChild(btn);
   }
 }
@@ -122,7 +134,7 @@ function updateUI(){
   render();
 }
 function render(){
-  const con = document.getElementById('content'), ds = selDate.toISOString().split('T')[0];
+  const con = document.getElementById('content'), ds = toDS(selDate); // 修正箇所
   if(isAll){
     let cols=[]; [4,5,6].forEach(g=>MB[g].forEach(n=>cols.push({g,n})));
     let h=`<div style="overflow-x:auto; background:#fff; border-radius:10px;"><table style="width:100%; border-collapse:collapse; font-size:12px;"><thead><tr style="background:#eee;"><th>限</th>`;
@@ -133,6 +145,13 @@ function render(){
       cols.forEach(c=>{ let d=db.tt[`${ds}-${c.g}-${c.n}-${p}`]||{s:'',m:''}; h+=`<td class="s-${d.s}" style="border:1px solid #eee; text-align:center; padding:5px; height:60px; vertical-align:middle;"><div style="font-weight:bold;">${d.s}</div>${d.m ? `<div style="font-size:8px; color:#E11D48; line-height:1; margin-top:2px;">🔑${d.m}</div>` : ''}</td>`; });
       h+=`</tr>`;
     }
+    // 修正：全員一覧の時にも、一番下に「下校」と「全体の持ち物」を表示するように追加
+    h+=`<tr><td style="border:1px solid #eee; text-align:center; font-weight:bold; background:#f9fafb; font-size:11px;">下校</td>`;
+    cols.forEach(c=>{ let inf=db.info[`${ds}-${c.g}-${c.n}`]; h+=`<td style="border:1px solid #eee; text-align:center; padding:5px; vertical-align:middle; font-size:11px;">${inf?inf.out:''}</td>`; });
+    h+=`</tr><tr><td style="border:1px solid #eee; text-align:center; font-weight:bold; background:#f9fafb; font-size:11px;">持ち物</td>`;
+    cols.forEach(c=>{ let inf=db.info[`${ds}-${c.g}-${c.n}`]; h+=`<td style="border:1px solid #eee; text-align:center; padding:5px; vertical-align:middle; font-size:10px; color:#E11D48;">${inf?inf.bag:''}</td>`; });
+    h+=`</tr>`;
+    
     con.innerHTML=h+`</tbody></table></div>`;
   } else {
     let rows = '';
@@ -145,9 +164,9 @@ function render(){
   }
 }
 let curP = 0;
-function openSubj(p){ curP = p; const ds = selDate.toISOString().split('T')[0]; const d = db.tt[`${ds}-${whoG}-${whoM}-${curP}`] || {s:'', m:''}; document.getElementById('subjMemo').value = d.m; const grid = document.getElementById('subjOpts'); grid.innerHTML = ''; subjects.forEach(s => { const b = document.createElement('button'); b.className = 'opt-btn s-'+s; b.textContent = s; b.onclick = () => setSubj(s); grid.appendChild(b); }); document.getElementById('subjOv').classList.add('on'); }
-function setSubj(s){ const ds = selDate.toISOString().split('T')[0]; db.tt[`${ds}-${whoG}-${whoM}-${curP}`] = {s:s, m:document.getElementById('subjMemo').value}; saveDB(); document.getElementById('subjOv').classList.remove('on'); render(); }
-function saveInfo(k,v){ const ds = selDate.toISOString().split('T')[0]; if(!db.info[`${ds}-${whoG}-${whoM}`]) db.info[`${ds}-${whoG}-${whoM}`]={out:'', bag:''}; db.info[`${ds}-${whoG}-${whoM}`][k]=v; saveDB(); }
+function openSubj(p){ curP = p; const ds = toDS(selDate); const d = db.tt[`${ds}-${whoG}-${whoM}-${curP}`] || {s:'', m:''}; document.getElementById('subjMemo').value = d.m; const grid = document.getElementById('subjOpts'); grid.innerHTML = ''; subjects.forEach(s => { const b = document.createElement('button'); b.className = 'opt-btn s-'+s; b.textContent = s; b.onclick = () => setSubj(s); grid.appendChild(b); }); document.getElementById('subjOv').classList.add('on'); }
+function setSubj(s){ const ds = toDS(selDate); db.tt[`${ds}-${whoG}-${whoM}-${curP}`] = {s:s, m:document.getElementById('subjMemo').value}; saveDB(); document.getElementById('subjOv').classList.remove('on'); render(); }
+function saveInfo(k,v){ const ds = toDS(selDate); if(!db.info[`${ds}-${whoG}-${whoM}`]) db.info[`${ds}-${whoG}-${whoM}`]={out:'', bag:''}; db.info[`${ds}-${whoG}-${whoM}`][k]=v; saveDB(); }
 function saveDB(){ localStorage.setItem('edu_db_v8', JSON.stringify(db)); }
 function openSet(){ document.getElementById('gasUrl').value = localStorage.getItem('gas_url')||''; document.getElementById('setOv').classList.add('on'); }
 function saveSettings(){ localStorage.setItem('gas_url', document.getElementById('gasUrl').value); document.getElementById('setOv').classList.remove('on'); alert('設定を保存しました'); fetchCloud(); }
@@ -160,7 +179,6 @@ async function saveToCloud(){
   const url = localStorage.getItem('gas_url'); if(!url){ alert('⚙ボタンからURLを設定してください'); return; }
   if(isAll){ alert('「全員」表示の時は保存できません。自分の出席番号を選んでから保存してください。'); return; }
   
-  // 自分（この出席番号）のデータだけを抽出して送信
   const myUpdate = { tt: {}, info: {} };
   const idPattern = `-${whoG}-${whoM}-`;
   const infoPattern = `-${whoG}-${whoM}`;
@@ -180,12 +198,12 @@ function execPrint(){
   if(isAll){
     let h = `<div style="text-align:center; font-size:18px; font-weight:bold; margin-bottom:10px;">全員分の週間予定</div><div style="display:grid; grid-template-columns: repeat(3, 1fr); gap: 10px;">`;
     dates.forEach(d => {
-      let ds = d.toISOString().split('T')[0];
+      let ds = toDS(d);
       h += `<div style="border:1px solid #333; padding:5px;"><div style="background:#eee; text-align:center; font-weight:bold;">${d.getMonth()+1}/${d.getDate()} (${DJ[d.getDay()]})</div><table style="width:100%; border-collapse:collapse; font-size:10px;">`;
       let cols = []; [4,5,6].forEach(g => MB[g].forEach(n => cols.push({g,n})));
       for(let p=1; p<=6; p++){
         h += `<tr><td style="border:1px solid #999; width:15px; text-align:center;">${p}</td>`;
-        cols.forEach(c => { let d = db.tt[`${ds}-${c.g}-${c.n}-${p}`] || {s:'',m:''}; h += `<td class="ps-${d.s}" style="border:1px solid #999; text-align:center; height:45px; vertical-align:middle;"><div style="font-weight:bold;">${d.s}</div>${d.m ? `<div style="font-size:7px; color:#C00;">${d.m}</div>` : ''}</td>`; });
+        cols.forEach(c => { let data = db.tt[`${ds}-${c.g}-${c.n}-${p}`] || {s:'',m:''}; h += `<td class="ps-${data.s}" style="border:1px solid #999; text-align:center; height:45px; vertical-align:middle;"><div style="font-weight:bold;">${data.s}</div>${data.m ? `<div style="font-size:7px; color:#C00;">${data.m}</div>` : ''}</td>`; });
         h += `</tr>`;
       }
       h += `</table></div>`;
@@ -197,13 +215,13 @@ function execPrint(){
     h += `</tr>`;
     for(let p=1; p<=6; p++){
       h += `<tr><td><strong>${p}限</strong></td>`;
-      dates.forEach(d => { let data = db.tt[`${d.toISOString().split('T')[0]}-${whoG}-${whoM}-${p}`] || {s:'', m:''}; h += `<td class="ps-${data.s}"><div style="font-weight:bold;">${data.s}</div>${data.m ? `<div style="font-size:10px; color:#C00; font-weight:bold;">🔑${data.m}</div>` : ''}</td>`; });
+      dates.forEach(d => { let data = db.tt[`${toDS(d)}-${whoG}-${whoM}-${p}`] || {s:'', m:''}; h += `<td class="ps-${data.s}"><div style="font-weight:bold;">${data.s}</div>${data.m ? `<div style="font-size:10px; color:#C00; font-weight:bold;">🔑${data.m}</div>` : ''}</td>`; });
       h += `</tr>`;
     }
     h += `<tr><td><strong>下校</strong></td>`;
-    dates.forEach(d => { let inf = db.info[`${d.toISOString().split('T')[0]}-${whoG}-${whoM}`]; h += `<td>${inf?inf.out:''}</td>`; });
+    dates.forEach(d => { let inf = db.info[`${toDS(d)}-${whoG}-${whoM}`]; h += `<td>${inf?inf.out:''}</td>`; });
     h += `</tr><tr><td><strong>もちもの</strong></td>`;
-    dates.forEach(d => { let inf = db.info[`${d.toISOString().split('T')[0]}-${whoG}-${whoM}`]; h += `<td style="font-size:9px; vertical-align:top; text-align:left; height:60px; padding:4px;">${inf?inf.bag:''}</td>`; });
+    dates.forEach(d => { let inf = db.info[`${toDS(d)}-${whoG}-${whoM}`]; h += `<td style="font-size:9px; vertical-align:top; text-align:left; height:60px; padding:4px;">${inf?inf.bag:''}</td>`; });
     h += `</tr></table>`;
     pa.innerHTML = h;
   }
